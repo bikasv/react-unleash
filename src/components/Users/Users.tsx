@@ -1,4 +1,4 @@
-import { useFlag } from '@unleash/proxy-client-react';
+import { useFlag, useFlagsStatus } from '@unleash/proxy-client-react';
 
 import { useGetUsersQuery } from '@/store/usersSlice';
 import { formUrl } from '@/utilities';
@@ -11,10 +11,11 @@ import {
 } from './Users.styled';
 
 export function Users() {
+  const { flagsReady } = useFlagsStatus();
   const isWebRequired = useFlag('web.instead.email');
   const { data, isLoading, error } = useGetUsersQuery();
 
-  if (isLoading) {
+  if (isLoading || !flagsReady) {
     return (
       <div>Loading...</div>
     );
