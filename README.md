@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+# React Unleash POC
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a small boilerplate to test React integration with Unleash feature flags. It use following main libraries -
 
-Currently, two official plugins are available:
+- React
+- Vite
+- Typescript
+- Redux-toolkit with RTK-Query
+- MSW
+- React-Testing-Library
+- Vitest
+- Unleash integration
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup
 
-## Expanding the ESLint configuration
+- Install dependencies - run `pnpm i`
+- Run local unleash instance or use the hosted instance
+  - For local - [Quick start](https://docs.getunleash.io/quickstart)
+  - For hosted - request instance URL and token from the provider
+- Create `.env` file in the root of the project with following values
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  ```shell
+    VITE_UNLEASH_API_URL=<Unleash API URL>
+    VITE_UNLEASH_TOKEN=<Unleash API token>
+  ```
+- For test purposes, create the following feature flag in unleash
+  - `web.instead.email`
+  - Feel free to use any strategy for dev and prod
+  - Make sure at least dev scenario is switched on
+- Run the application - `pnpm dev`
+- Open app to test - `http://localhost:3000`
 
-- Configure the top-level `parserOptions` property like this:
+### Note
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Since we're mocking `Unleash` data with `MSW`, it's possible to run this app without `Unleash` at all, but it'll not be able to demonstrate the `Unleash` integration fully.
