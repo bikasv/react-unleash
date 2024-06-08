@@ -15,6 +15,29 @@ describe('Users', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Leanne Graham')).toBeInTheDocument();
+      expect(screen.getByText('hildegard.org')).toBeInTheDocument();
+    });
+  });
+
+  test('should handle scenario when web feature flag is off', async() => {
+    server.use(
+      http.get('http://localhost:4242/api/frontend', () => HttpResponse.json({
+        toggles: [
+          {
+            enabled: false,
+            name: 'web.instead.email',
+          },
+        ],
+      })),
+    );
+
+    renderWithProviders(<Users />);
+
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText('Leanne Graham')).toBeInTheDocument();
+      expect(screen.queryByText('hildegard.org')).not.toBeInTheDocument();
     });
   });
 

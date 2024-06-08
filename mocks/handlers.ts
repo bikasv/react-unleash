@@ -2,6 +2,7 @@ import { http, HttpResponse } from 'msw';
 
 import posts from './data/posts.json';
 import users from './data/users.json';
+import web from './data/web.instead.email.json';
 
 export const handlers = [
   http.get('https://jsonplaceholder.typicode.com/users', () => {
@@ -19,5 +20,8 @@ export const handlers = [
     const data = posts.find((post) => post.id === Number(params.id));
 
     return HttpResponse.json(data);
+  }),
+  http.get('http://localhost:4242/api/frontend', () => {
+    return HttpResponse.json(web);
   }),
 ];

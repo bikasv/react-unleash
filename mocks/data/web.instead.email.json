@@ -1,0 +1,15 @@
+{
+	"toggles": [
+		{
+			"enabled": true,
+			"impressionData": false,
+			"name": "web.instead.email",
+			"variant": {
+				"enabled": false,
+				"feature_enabled": true,
+				"featureEnabled": true,
+				"name": "disabled"
+			}
+		}
+	]
+}

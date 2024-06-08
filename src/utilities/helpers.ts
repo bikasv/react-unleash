@@ -12,3 +12,7 @@ export function formatDate(dateString: string) {
 
   return `${day} ${constants.monthMapping[date.getMonth()]}, ${date.getFullYear()}`;
 }
+
+export function formUrl(urlPart: string) {
+  return (new URL(`https://${urlPart}`)).toString();
+}

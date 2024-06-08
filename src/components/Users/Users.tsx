@@ -1,4 +1,7 @@
+import { useFlag } from '@unleash/proxy-client-react';
+
 import { useGetUsersQuery } from '@/store/usersSlice';
+import { formUrl } from '@/utilities';
 
 import {
   Card,
@@ -8,6 +11,7 @@ import {
 } from './Users.styled';
 
 export function Users() {
+  const isWebRequired = useFlag('web.instead.email');
   const { data, isLoading, error } = useGetUsersQuery();
 
   if (isLoading) {
@@ -30,7 +34,9 @@ export function Users() {
           </StyledName>
 
           <p>
-            <a href={`mailto:${user.email}`}>{user.email}</a>
+            {isWebRequired
+              ? <a href={formUrl(user.website)}>{user.website}</a>
+              : <a href={`mailto:${user.email}`}>{user.email}</a>}
           </p>
 
           <p>
