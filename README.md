@@ -32,4 +32,6 @@ This is a small boilerplate to test React integration with Unleash feature flags
 
 ### Note
 
-- Since we're mocking `Unleash` data with `MSW`, it's possible to run this app without `Unleash` at all, but it'll not be able to demonstrate the `Unleash` integration fully.
+- Since we're mocking `Unleash` data with `msw`, it's possible to run this app without `Unleash` at all, but it'll not be able to demonstrate the `Unleash` integration fully.
+- Currently `msw` is using this `Unleash` API endpoint - `http://localhost:4242/api/frontend`.
+  - If the provided endpoint changes and mocking is required, please update the URL in `mocks/handlers.ts` file.
