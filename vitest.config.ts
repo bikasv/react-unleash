@@ -19,8 +19,8 @@ export default defineConfig((configEnv) => mergeConfig(
         include: [
           'src/**',
         ],
-        provider: 'istanbul',
-        reporter: ['clover', 'html', 'json', 'text'],
+        provider: 'v8',
+        reporter: ['lcov', 'json', 'text'],
       },
       globals: true,
       environment: 'jsdom',
