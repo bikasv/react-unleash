@@ -1,10 +1,10 @@
 /* eslint-disable no-duplicate-imports */
+import { createRootRoute, createRouter, RouterProvider } from '@tanstack/react-router';
 import type { RenderOptions } from '@testing-library/react';
 import { render } from '@testing-library/react';
 import { FlagProvider } from '@unleash/proxy-client-react';
 import React, { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
 
 import type { AppStore, RootState } from '@/store';
 import { setupStore } from '@/store';
@@ -31,16 +31,17 @@ function renderWithProviders(
   }: ExtendedRenderOptions = {},
 ) {
   function Wrapper({ children }: PropsWithChildren<object>): JSX.Element {
+    const router = createRouter({ routeTree: createRootRoute({ component: () => children }) });
+
     return (
       <FlagProvider config={config}>
         <Provider store={store}>
-          <MemoryRouter>
-            {children}
-          </MemoryRouter>
+          <RouterProvider router={router} />
         </Provider>
       </FlagProvider>
     );
   }
+
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
 

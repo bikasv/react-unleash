@@ -10,6 +10,17 @@
 				"featureEnabled": true,
 				"name": "disabled"
 			}
+		},
+		{
+			"enabled": true,
+			"impressionData": false,
+			"name": "show.posts",
+			"variant": {
+				"enabled": false,
+				"feature_enabled": true,
+				"featureEnabled": true,
+				"name": "disabled"
+			}
 		}
 	]
 }

@@ -23,8 +23,9 @@ This is a small boilerplate to test React integration with Unleash feature flags
     VITE_UNLEASH_API_URL=<Unleash API URL>
     VITE_UNLEASH_TOKEN=<Unleash API token>
   ```
-- For test purposes, create the following feature flag in unleash
+- For test purposes, create the following feature flags in unleash
   - `web.instead.email`
+  - `show.posts`
   - Feel free to use any strategy for dev and prod
   - Make sure at least dev scenario is switched on
 - Run the application - `pnpm dev`

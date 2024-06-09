@@ -1,17 +1,22 @@
-import { render, screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
+import { renderWithProviders } from '../../../mocks/Wrapper';
 import { Header } from './Header';
 
 describe('Header', () => {
-  test('should render the Header', () => {
-    render(<Header title="test" />);
+  test('should render the Header', async() => {
+    renderWithProviders(<Header title="test" />);
 
-    expect(screen.queryByText('test')).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.queryByText('test')).toBeTruthy();
+    });
   });
 
-  test('should render the Header with default title', () => {
-    render(<Header />);
+  test('should render the Header with default title', async() => {
+    renderWithProviders(<Header />);
 
-    expect(screen.queryByText('React Seed')).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.queryByText('React Seed')).toBeTruthy();
+    });
   });
 });

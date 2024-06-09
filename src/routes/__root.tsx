@@ -1,12 +1,19 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import { useFlag } from '@unleash/proxy-client-react';
 
 import { Header } from '@/components';
 
 export const Route = createRootRoute({
-  component: () => (
+  component: Root,
+});
+
+function Root() {
+  const showSidebar = useFlag('show.posts');
+
+  return (
     <>
-      <Header />
+      <Header showSidebar={showSidebar} />
 
       <main className="page">
         <Outlet />
@@ -14,5 +21,5 @@ export const Route = createRootRoute({
 
       {import.meta.env.DEV && <TanStackRouterDevtools />}
     </>
-  ),
-});
+  );
+}

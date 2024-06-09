@@ -15,4 +15,8 @@ export default {
     tagLight: '#dfaeae',
     white: '#ffffff',
   },
+  sizes: {
+    normal: '1rem',
+    large: '1.25rem',
+  },
 };

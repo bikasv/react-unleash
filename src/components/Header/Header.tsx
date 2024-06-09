@@ -1,25 +1,32 @@
-import styled from 'styled-components';
+import { Home, Rss } from 'lucide-react';
 
-import tokens from '@/design/tokens';
-
-const HeaderStyled = styled.header`
-  background-color: ${tokens.colors.header};
-  box-shadow: 0 1px 0.25rem ${tokens.colors.header};
-  color: ${tokens.colors.white};
-  display: flex;
-  font-size: 1.25rem;
-  margin: 0 0 0.5rem;
-  padding: 1rem;
-`;
+import {
+  HeaderStyled,
+  Sidebar,
+  SidebarItem,
+  Title,
+} from './Header.styled';
 
 type HeaderProps = {
+  showSidebar?: boolean;
   title?: string;
 };
 
-export function Header({ title = 'React Seed' }: HeaderProps) {
+export function Header({ showSidebar = false, title = 'React Seed' }: HeaderProps) {
   return (
     <HeaderStyled>
-      {title}
+      <Title to="/"><Home /> {title}</Title>
+
+      {showSidebar && (
+        <Sidebar>
+          <SidebarItem
+            aria-label="to posts"
+            to="/posts"
+          >
+            <Rss />
+          </SidebarItem>
+        </Sidebar>
+      )}
     </HeaderStyled>
   );
 }

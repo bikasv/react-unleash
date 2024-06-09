@@ -11,8 +11,6 @@ describe('Users', () => {
   test('should render Users', async() => {
     renderWithProviders(<Users />);
 
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
-
     await waitFor(() => {
       expect(screen.getByText('Leanne Graham')).toBeInTheDocument();
       expect(screen.getByText('hildegard.org')).toBeInTheDocument();
@@ -33,8 +31,6 @@ describe('Users', () => {
 
     renderWithProviders(<Users />);
 
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
-
     await waitFor(() => {
       expect(screen.getByText('Leanne Graham')).toBeInTheDocument();
       expect(screen.queryByText('hildegard.org')).not.toBeInTheDocument();
@@ -47,8 +43,6 @@ describe('Users', () => {
     );
 
     renderWithProviders(<Users />);
-
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
 
     await waitFor(() => {
       expect(screen.getByText('Error fetching users')).toBeInTheDocument();

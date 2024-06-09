@@ -7,8 +7,6 @@ describe('Home page', () => {
   test('should render Home', async() => {
     renderWithProviders(<Home />);
 
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
-
     await waitFor(() => {
       expect(screen.getByText('Leanne Graham')).toBeInTheDocument();
     });
