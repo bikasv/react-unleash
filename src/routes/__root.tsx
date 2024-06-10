@@ -9,11 +9,11 @@ export const Route = createRootRoute({
 });
 
 function Root() {
-  const showSidebar = useFlag('show.posts');
+  const showPosts = useFlag('show.posts');
 
   return (
     <>
-      <Header showSidebar={showSidebar} />
+      <Header showPosts={showPosts} />
 
       <main className="page">
         <Outlet />

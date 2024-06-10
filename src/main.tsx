@@ -15,7 +15,7 @@ const router = createRouter({ routeTree });
 const config = {
   appName: 'react-unleash',
   clientKey: import.meta.env.VITE_UNLEASH_TOKEN as string,
-  disableRefresh: true,
+  disableRefresh: false,
   refreshInterval: 15,
   url: import.meta.env.VITE_UNLEASH_API_URL as string,
 };
@@ -26,6 +26,20 @@ async function enableMocking() {
   }
 
   const { worker } = await import('../mocks/browser');
+  let started = true;
+
+  window.stopMock = async() => {
+    if (started) {
+      worker.stop();
+      started = false;
+    } else {
+      await worker.start({
+        onUnhandledRequest: 'bypass',
+      });
+
+      started = true;
+    }
+  };
 
   return worker.start({
     onUnhandledRequest: 'bypass',

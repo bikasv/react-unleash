@@ -1,4 +1,4 @@
-import { Home, Rss } from 'lucide-react';
+import { CirclePower, Home, Rss } from 'lucide-react';
 
 import {
   HeaderStyled,
@@ -8,25 +8,32 @@ import {
 } from './Header.styled';
 
 type HeaderProps = {
-  showSidebar?: boolean;
+  showPosts?: boolean;
   title?: string;
 };
 
-export function Header({ showSidebar = false, title = 'React Seed' }: HeaderProps) {
+export function Header({ showPosts = false, title = 'React Seed' }: HeaderProps) {
   return (
     <HeaderStyled>
       <Title to="/"><Home /> {title}</Title>
 
-      {showSidebar && (
-        <Sidebar>
+      <Sidebar>
+        {showPosts && (
           <SidebarItem
             aria-label="to posts"
             to="/posts"
           >
             <Rss />
           </SidebarItem>
-        </Sidebar>
-      )}
+        )}
+
+        <SidebarItem
+          aria-label="to posts"
+          onClick={window.stopMock}
+        >
+          <CirclePower />
+        </SidebarItem>
+      </Sidebar>
     </HeaderStyled>
   );
 }
